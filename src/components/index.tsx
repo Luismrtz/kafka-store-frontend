@@ -1,0 +1,5 @@
+export { default as Banner } from './banner/Banner'
+export { default as Footer } from './footer/Footer'
+export { default as Navbar } from './navbar/Navbar'
+export { default as Products } from './products/Products'
+// export { default as Product } from './products/product/Product'
