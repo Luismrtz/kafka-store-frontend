@@ -4,14 +4,30 @@ import './index.css';
 import App from './App/App';
 import reportWebVitals from './reportWebVitals';
 
+//todo include <Provider store={store}> wrapper tag for redux
+import  CssBaseline  from '@material-ui/core/CssBaseline';
+import { createTheme, ThemeProvider} from '@material-ui/core/styles';
+
+// for global typography breakpoints/(mediaqueries)
+// const defaultTheme = createTheme();
+const globalTheme = createTheme({
+  palette: {
+    background: {
+      default: '#eee'
+    }
+  },
+  typography: {
+    htmlFontSize: 10
+  }
+
+})
+
 ReactDOM.render(
-  <React.StrictMode>
+  <ThemeProvider theme={globalTheme}>
+    <CssBaseline/>
     <App />
-  </React.StrictMode>,
+  </ThemeProvider>,
   document.getElementById('root')
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
