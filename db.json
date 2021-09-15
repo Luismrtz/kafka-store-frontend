@@ -1,0 +1,42 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Rock candy",
+      "img": "",
+      "price": 5,
+      "info": "This is a message"
+    },
+    {
+      "id": 2,
+      "name": "Bubble gum",
+      "img": "",
+      "price": 2,
+      "info": "Apples are apples"
+    },
+    {
+      "id": 3,
+      "name": "Gummies",
+      "img": "",
+      "price": 3,
+      "info": "Oranges are oranges"
+    },
+    {
+      "id": 4,
+      "name": "Jaw breaker",
+      "img": "",
+      "price": 7,
+      "info": "Bananos"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
