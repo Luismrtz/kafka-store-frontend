@@ -4,14 +4,22 @@ import useStyles from './ProductStyles';
 
 
 import { Card, CardContent, CardHeader, CardMedia } from '@material-ui/core'
-import { productTypes } from '../Products'
+// import { productTypes } from '../Products'
+
+import { ProductType } from '../../../state/type';
+// import { useAppDispatch } from '../../../hooks/dispApp';
+
+
+//? setting the PASSED product to same as ProductType type.
+type Props = {
+    product: ProductType
+}
 
 
 
-
-
-const Product:FC<productTypes> = ({productAvocado}) => {
+const Product:FC<Props> = ({product}) => {
     const classes = useStyles();
+    // const dispatch = useAppDispatch()
     // useEffect(() => {
     //     const fetchProducts = async () => {
     //         // const res = await fetch(
@@ -42,9 +50,9 @@ const Product:FC<productTypes> = ({productAvocado}) => {
                     {/* {productAvocado.name} */}
     
                 {/* <CardMedia/> */}
-                <CardHeader title={productAvocado.name}/>
+                <CardHeader title={product.name}/>
                 <CardContent>
-                    {productAvocado.info}
+                    {product.info}
                 </CardContent>
             </Card>
         </div>
