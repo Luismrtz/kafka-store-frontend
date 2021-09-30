@@ -7,6 +7,10 @@ import { Card, CardContent, CardHeader, CardMedia } from '@material-ui/core'
 // import { productTypes } from '../Products'
 
 import { ProductType } from '../../../state/type';
+import { useAppDispatch } from '../../../hooks/dispApp';
+import { productsDelete } from '../../../state/reducers/productSlice';
+// import { productsFetch } from '../../../state/reducers/productSlice';
+import { addToCart, removeFromCart } from '../../../state/reducers/cartSlice';
 // import { useAppDispatch } from '../../../hooks/dispApp';
 
 
@@ -18,6 +22,7 @@ type Props = {
 
 
 const Product:FC<Props> = ({product}) => {
+    const dispatch = useAppDispatch()
     const classes = useStyles();
     // const dispatch = useAppDispatch()
     // useEffect(() => {
@@ -54,6 +59,9 @@ const Product:FC<Props> = ({product}) => {
                 <CardContent>
                     {product.info}
                 </CardContent>
+            <div onClick={() => dispatch(productsDelete(product.id))}>POOOOOOP</div>
+            <div onClick={() => dispatch(addToCart(product))}>ADD TO CART</div>
+            <div onClick={() => dispatch(removeFromCart(product))}>REMOVE FROM CART</div>
             </Card>
         </div>
     )

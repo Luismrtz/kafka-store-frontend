@@ -7,8 +7,28 @@ export type ProductType = {
 }
 
 export type productStateType = {
-    products: ProductType[]
+    products: ProductType[],
+    loading: 'idle' | 'pending' | 'succeeded' | 'failed',
+    error: null | string
 }
 
 
 export type ActionType = ReturnType<typeof selectProductActionCreator>
+
+
+
+//? cart
+export type CartType = {
+    id: string | number
+    subtotal: string | null
+    quantity: number
+    line_items: ProductType[] | null
+}
+
+
+
+export type cartInitialStateType = {
+    carts: CartType[]
+}
+
+export type CartActionType = ReturnType<typeof setCart>

@@ -8,7 +8,7 @@ import Product from './product/Product';
 import { useAppDispatch, useAppSelector } from '../../hooks/dispApp';
 
 import { RootState } from '../../state/store';
-import { fetchProducts } from '../../state/reducers/productSlice';
+import { productsFetch } from '../../state/reducers/productSlice';
 
 
 
@@ -49,7 +49,7 @@ const Products = () => {
     // }
 
     useEffect(() => {
-        dispatch(fetchProducts());
+        dispatch(productsFetch());
     }, [dispatch])
 
 

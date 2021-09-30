@@ -8,17 +8,17 @@
       "info": "This is a message"
     },
     {
-      "id": 2,
-      "name": "Bubble gum",
-      "img": "",
-      "price": 2,
-      "info": "Apples are apples"
-    },
-    {
       "id": 3,
       "name": "Gummies",
       "img": "",
       "price": 3,
+      "info": "Oranges are oranges"
+    },
+    {
+      "id": 5,
+      "name": "peanuts",
+      "img": "",
+      "price": 20,
       "info": "Oranges are oranges"
     },
     {
@@ -36,6 +36,7 @@
       "postId": 1
     }
   ],
+  "carts": [],
   "profile": {
     "name": "typicode"
   }
