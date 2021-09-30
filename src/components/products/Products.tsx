@@ -10,6 +10,9 @@ import { useAppDispatch, useAppSelector } from '../../hooks/dispApp';
 import { RootState } from '../../state/store';
 import { productsFetch } from '../../state/reducers/productSlice';
 
+//! test, MOVE to Cart folder. 
+import { getCartProducts } from '../../state/reducers/cartSlice';
+import { getTotalPrice } from '../../state/reducers/cartSlice';
 
 
 // export type productType = {
@@ -30,6 +33,12 @@ const Products = () => {
     const dispatch = useAppDispatch();
     const { products } = useAppSelector((state: RootState) => state.products);
     // const [prods, setProds] = useState<productType[]>([]);
+
+    //!test move to Cart folder
+    const cartProducts = useAppSelector(getCartProducts);
+    const totalPrice = useAppSelector(getTotalPrice);
+
+
 
     // useEffect(() => {
     //     // must be async/await, because waiting on fetchProducts to run first
@@ -63,6 +72,16 @@ const Products = () => {
                  <Product product={prod} />
             )}
              </div>
+             {/* //! Test: move to cart folder */}
+             <h2>{totalPrice}</h2>
+             <h2>{cartProducts.length}</h2>
+             <div className={classes.wrapper}>
+            {cartProducts && cartProducts.map((prod) => 
+      
+                 <Product product={prod} />
+            )}
+             </div>
+             
         </div>
     )
 }

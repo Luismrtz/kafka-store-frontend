@@ -61,7 +61,7 @@ const Product:FC<Props> = ({product}) => {
                 </CardContent>
             <div onClick={() => dispatch(productsDelete(product.id))}>POOOOOOP</div>
             <div onClick={() => dispatch(addToCart(product))}>ADD TO CART</div>
-            <div onClick={() => dispatch(removeFromCart(product))}>REMOVE FROM CART</div>
+            <div onClick={() => dispatch(removeFromCart(product.id))}>REMOVE FROM CART</div>
             </Card>
         </div>
     )
