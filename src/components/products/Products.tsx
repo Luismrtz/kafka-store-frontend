@@ -69,16 +69,16 @@ const Products = () => {
             <div className={classes.wrapper}>
             {products && products.map((prod) => 
       
-                 <Product product={prod} />
+                 <Product aType={2} product={prod} />
             )}
              </div>
              {/* //! Test: move to cart folder */}
-             <h2>{totalPrice}</h2>
-             <h2>{cartProducts.length}</h2>
+             <h2>total Price: {totalPrice}</h2>
+             <h2># of items in cart: {cartProducts.length}</h2>
              <div className={classes.wrapper}>
             {cartProducts && cartProducts.map((prod) => 
       
-                 <Product product={prod} />
+                 <Product aType={1} product={prod} />
             )}
              </div>
              

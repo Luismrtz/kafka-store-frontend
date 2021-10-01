@@ -3,7 +3,8 @@ export type ProductType = {
     name: string,
     img: string,
     price: number,
-    info: string
+    info: string,
+    stock: number
 }
 
 export type productStateType = {
