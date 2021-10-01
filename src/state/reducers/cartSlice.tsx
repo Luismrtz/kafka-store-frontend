@@ -29,6 +29,12 @@ export type newCartTest = {
     cartTotalAmount?: number
 }
 
+export type thisISATest = {
+    qty: number,
+    prodId: number
+}
+
+
 const initialState: newCartTest = {
     cartItems: localStorage.getItem("cartItems")
     ? JSON.parse(localStorage.getItem("cartItems") || '{}')
@@ -55,17 +61,51 @@ export const cartSlice = createSlice({
         //         state.cart.push(tempProduct);
         //     }
         // }),
-        addToCart(state, {payload}: PayloadAction<ProductType>){
+        addToCart(state, action: PayloadAction<CartTest>){
+            // const { id, qty } = action.payload;
             const itemIndex = state.cartItems.findIndex(
-                (item) => item.id === payload.id
+                (item) => item.id === action.payload.id
             );
-            if(itemIndex >= 0) {
-                state.cartItems[itemIndex] = {
-                    ...state.cartItems[itemIndex],
-                    quantity: state.cartItems[itemIndex].quantity + 1
-                }
+            const stockInfo = state.cartItems[itemIndex]?.stock;
+            const qtyInfo = state.cartItems[itemIndex]?.quantity;
+            if(itemIndex >= 0 ) {
+                // if(stockInfo > qtyInfo) {
+
+                    state.cartItems[itemIndex] = {
+                        ...state.cartItems[itemIndex],
+                        //todo... add stock # to type
+                        //? if stock is MORE than CURRENT quantity, then add 1
+                        
+                  
+                        quantity: state.cartItems[itemIndex].quantity + ((stockInfo > qtyInfo) && (qtyInfo + action.payload.quantity <= stockInfo) ? action.payload.quantity : 0)
+                    }
+                    // }
             } else {
-                const tempProduct = {...payload, quantity: 1};
+                const tempProduct = {...action.payload};
+                state.cartItems.push(tempProduct);
+            }
+            localStorage.setItem("cartItems", JSON.stringify(state.cartItems))
+        },
+        changeToCart(state, action: PayloadAction<CartTest>){
+            // const { id, qty } = action.payload;
+            const itemIndex = state.cartItems.findIndex(
+                (item) => item.id === action.payload.id
+            );
+            const stockInfo = state.cartItems[itemIndex]?.stock;
+            const qtyInfo = state.cartItems[itemIndex]?.quantity;
+            if(itemIndex >= 0 ) {
+                // if(stockInfo > qtyInfo) {
+
+                    state.cartItems[itemIndex] = {
+                        ...state.cartItems[itemIndex],
+                        //todo... add stock # to type
+                        //? if stock is MORE than CURRENT quantity, then add 1
+                        quantity: action.payload.quantity
+                      
+                    // }
+                    }
+            } else {
+                const tempProduct = {...action.payload};
                 state.cartItems.push(tempProduct);
             }
             localStorage.setItem("cartItems", JSON.stringify(state.cartItems))
@@ -77,6 +117,12 @@ export const cartSlice = createSlice({
     //TODO:  ADD ERROR handling WHEREVER is NEEDED -- REDUCERS &&& CART HTML UI
     //TODO: Make a spinner? 
     //TODO: OR add TOAST package with REDUCER error handling
+
+    //*: Include Add / remove feature separately???? CHECK!
+    //*: Add a drop list for quantity / change CHECK!
+    //Todo: Change that to a input field 
+    //Todo: Push info and grab total amount / total quantity
+    //Todo: From inital state (currently not being used)
         removeFromCart(state, {payload}: PayloadAction<number>) {
             const itemIndex = state.cartItems.findIndex(item => item.id === payload);
             if(state.cartItems[itemIndex].quantity > 1) {
@@ -93,6 +139,23 @@ export const cartSlice = createSlice({
     }
 
 })
+
+export const setCart = (prod: ProductType, quantity: number) => async (dispatch: Dispatch<CartActionType>) => {
+
+    const apples = { ...prod, quantity}
+    dispatch(addToCart(apples))
+  
+
+}
+
+export const setChange = (prod: ProductType, quantity: number) => async (dispatch: Dispatch<CartActionType>) => {
+
+    const apples = { ...prod, quantity}
+    dispatch(changeToCart(apples))
+  
+
+}
+
 
 // export const fetchCart = () => async (dispatch: Dispatch<CartActionType>) => {
 //     //
@@ -115,5 +178,6 @@ export default cartSlice.reducer;
 
 export const {
     addToCart,
+    changeToCart,
     removeFromCart
 } = cartSlice.actions
