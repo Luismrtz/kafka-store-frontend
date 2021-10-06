@@ -31,7 +31,7 @@ type Props2 = {
 
 
 
-const Product:FC<Props> = ({product, aType}) => {
+const Product:FC<Props> = ({product}) => {
     const dispatch = useAppDispatch()
     const classes = useStyles();
     const [aQty, setQty] = useState(1)
@@ -74,14 +74,11 @@ const Product:FC<Props> = ({product, aType}) => {
             
             Qty:
                 <select value={ (
-                    aType === 1 ?
-                    ( product?.quantity)
-                    :
+              
                     aQty
                 )
                 } onChange={(e) => (
-                    aType === 1 ? 
-                    dispatch(setChange(product, Number(e.target.value))) :
+                  
                     setQty(Number(e.target.value))
                 )
                     }>
@@ -90,15 +87,11 @@ const Product:FC<Props> = ({product, aType}) => {
                         )}
                 </select>
                 {
-                    aType === 2 ? <div onClick={() => dispatch(setChange(product, aQty))}>Add to cart</div> 
-                    : <div></div>
+                 <div onClick={() => dispatch(setChange(product, aQty))}>Add to cart</div> 
+             
                 }
             <div onClick={() => dispatch(setCart(product, 2))}>Add 2 to cart</div>
-            { aType === 1 ?
-
-            <div onClick={() => dispatch(removeFromCart(product.id))}>REMOVE FROM CART</div>
-            : <div></div>
-            }
+  
             </Card>
         </div>
     )

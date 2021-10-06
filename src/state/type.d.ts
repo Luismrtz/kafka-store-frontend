@@ -1,3 +1,7 @@
+//TODO: Clean up excess types/ interfaces... CONDENSE
+
+
+
 export type ProductType = {
     id: number,
     name: string,

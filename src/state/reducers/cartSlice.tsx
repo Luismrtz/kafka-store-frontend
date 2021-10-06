@@ -19,12 +19,14 @@ import { RootState } from '../store';
 //     carts: [],
 // }
 
+//TODO: Clean up excess types/ interfaces... CONDENSE
+
 export interface CartTest extends ProductType {
     quantity: number
 }
 
 export type newCartTest = {
-    cartItems: CartTest[],
+    cartTestItems: CartTest[],
     cartTotalQuantity?: number,
     cartTotalAmount?: number
 }
@@ -36,8 +38,8 @@ export type thisISATest = {
 
 
 const initialState: newCartTest = {
-    cartItems: localStorage.getItem("cartItems")
-    ? JSON.parse(localStorage.getItem("cartItems") || '{}')
+    cartTestItems: localStorage.getItem("cartTestItems")
+    ? JSON.parse(localStorage.getItem("cartTestItems") || '{}')
     : [],
     cartTotalQuantity: 0,
     cartTotalAmount: 0,
@@ -63,41 +65,41 @@ export const cartSlice = createSlice({
         // }),
         addToCart(state, action: PayloadAction<CartTest>){
             // const { id, qty } = action.payload;
-            const itemIndex = state.cartItems.findIndex(
+            const itemIndex = state.cartTestItems.findIndex(
                 (item) => item.id === action.payload.id
             );
-            const stockInfo = state.cartItems[itemIndex]?.stock;
-            const qtyInfo = state.cartItems[itemIndex]?.quantity;
+            const stockInfo = state.cartTestItems[itemIndex]?.stock;
+            const qtyInfo = state.cartTestItems[itemIndex]?.quantity;
             if(itemIndex >= 0 ) {
                 // if(stockInfo > qtyInfo) {
 
-                    state.cartItems[itemIndex] = {
-                        ...state.cartItems[itemIndex],
+                    state.cartTestItems[itemIndex] = {
+                        ...state.cartTestItems[itemIndex],
                         //todo... add stock # to type
                         //? if stock is MORE than CURRENT quantity, then add 1
                         
                   
-                        quantity: state.cartItems[itemIndex].quantity + ((stockInfo > qtyInfo) && (qtyInfo + action.payload.quantity <= stockInfo) ? action.payload.quantity : 0)
+                        quantity: state.cartTestItems[itemIndex].quantity + ((stockInfo > qtyInfo) && (qtyInfo + action.payload.quantity <= stockInfo) ? action.payload.quantity : 0)
                     }
                     // }
             } else {
                 const tempProduct = {...action.payload};
-                state.cartItems.push(tempProduct);
+                state.cartTestItems.push(tempProduct);
             }
-            localStorage.setItem("cartItems", JSON.stringify(state.cartItems))
+            localStorage.setItem("cartTestItems", JSON.stringify(state.cartTestItems))
         },
         changeToCart(state, action: PayloadAction<CartTest>){
             // const { id, qty } = action.payload;
-            const itemIndex = state.cartItems.findIndex(
+            const itemIndex = state.cartTestItems.findIndex(
                 (item) => item.id === action.payload.id
             );
-            const stockInfo = state.cartItems[itemIndex]?.stock;
-            const qtyInfo = state.cartItems[itemIndex]?.quantity;
+            const stockInfo = state.cartTestItems[itemIndex]?.stock;
+            const qtyInfo = state.cartTestItems[itemIndex]?.quantity;
             if(itemIndex >= 0 ) {
                 // if(stockInfo > qtyInfo) {
 
-                    state.cartItems[itemIndex] = {
-                        ...state.cartItems[itemIndex],
+                    state.cartTestItems[itemIndex] = {
+                        ...state.cartTestItems[itemIndex],
                         //todo... add stock # to type
                         //? if stock is MORE than CURRENT quantity, then add 1
                         quantity: action.payload.quantity
@@ -106,14 +108,36 @@ export const cartSlice = createSlice({
                     }
             } else {
                 const tempProduct = {...action.payload};
-                state.cartItems.push(tempProduct);
+                state.cartTestItems.push(tempProduct);
             }
-            localStorage.setItem("cartItems", JSON.stringify(state.cartItems))
+            localStorage.setItem("cartTestItems", JSON.stringify(state.cartTestItems))
         },
+
+        // getTotals(state) {
+        //     let {total, totalQuantity} = state.cartTestItems.reduce(
+        //         //acc, next
+        //         (cartTotal, cartItem) => {
+        //             const { price, quantity } = cartItem;
+        //             const itemTotal = price * quantity;
+
+        //             cartTotal.total += itemTotal;
+        //             cartTotal.totalQuantity += quantity;
+
+        //             return cartTotal;
+        //         },
+        //         {
+        //             total: 0,
+        //             totalQuantity: 0
+        //         }
+        //     );
+        //     total = parseFloat(total.toFixed(2));
+        //     state.cartTotalQuantity = totalQuantity;
+        //     state.cartTotalAmount = total;
+        // },
     //!note: pass in NUMBER as type if only want to pass ID as an argument -> to parameter.
     //!note: pass in <ProductType> if want to pass in AKK OBJECT types besides quantity.
     //!note: passing in <CartTest> breaks, because of type quantity
-    //TODO: CREATE A cart folder for UI.
+    //*: CREATE A cart folder for UI. CHECK!
     //TODO:  ADD ERROR handling WHEREVER is NEEDED -- REDUCERS &&& CART HTML UI
     //TODO: Make a spinner? 
     //TODO: OR add TOAST package with REDUCER error handling
@@ -124,16 +148,16 @@ export const cartSlice = createSlice({
     //Todo: Push info and grab total amount / total quantity
     //Todo: From inital state (currently not being used)
         removeFromCart(state, {payload}: PayloadAction<number>) {
-            const itemIndex = state.cartItems.findIndex(item => item.id === payload);
-            if(state.cartItems[itemIndex].quantity > 1) {
-                state.cartItems[itemIndex].quantity -= 1;
+            const itemIndex = state.cartTestItems.findIndex(item => item.id === payload);
+            if(state.cartTestItems[itemIndex].quantity > 1) {
+                state.cartTestItems[itemIndex].quantity -= 1;
             } else {
                 //!note: immutable filter is intention within regular reducers.... FALSE!!...
                 //? ... made it MUTable to work.... mutability just kinda works better in ALL reducers w/ TS
-                // return state.cartItems.filter(product => product.id !== payload.id)
-                state.cartItems.splice(itemIndex, 1);
+                // return state.cartTestItems.filter(product => product.id !== payload.id)
+                state.cartTestItems.splice(itemIndex, 1);
             }
-            localStorage.setItem("cartItems", JSON.stringify(state.cartItems))
+            localStorage.setItem("cartTestItems", JSON.stringify(state.cartTestItems))
         }
  
     }
@@ -171,13 +195,14 @@ export const setChange = (prod: ProductType, quantity: number) => async (dispatc
 
 // export const { addToCart} = cartSlice.actions
 
-export const getCartProducts = (state: RootState) => state.carts.cartItems;
-export const getTotalPrice = (state: RootState) => state.carts.cartItems.reduce((acc, next) => acc += (next.quantity * next.price),0)
+export const getCartProducts = (state: RootState) => state.carts.cartTestItems;
+export const getTotalPrice = (state: RootState) => state.carts.cartTestItems.reduce((acc, next) => acc += (next.quantity * next.price),0)
 
 export default cartSlice.reducer;
 
 export const {
     addToCart,
     changeToCart,
-    removeFromCart
+    removeFromCart,
+    // getTotals
 } = cartSlice.actions
