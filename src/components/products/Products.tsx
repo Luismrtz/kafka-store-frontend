@@ -12,7 +12,7 @@ import { productsFetch } from '../../state/reducers/productSlice';
 
 //! test, MOVE to Cart folder. 
 import { getCartProducts } from '../../state/reducers/cartSlice';
-import { getTotalPrice } from '../../state/reducers/cartSlice';
+// import { getTotalPrice } from '../../state/reducers/cartSlice';
 
 
 // export type productType = {
@@ -35,8 +35,8 @@ const Products = () => {
     // const [prods, setProds] = useState<productType[]>([]);
 
     //!test move to Cart folder
-    const cartProducts = useAppSelector(getCartProducts);
-    const totalPrice = useAppSelector(getTotalPrice);
+    // const cartProducts = useAppSelector(getCartProducts);
+    // const totalPrice = useAppSelector(getTotalPrice);
 
 
 
@@ -73,14 +73,7 @@ const Products = () => {
             )}
              </div>
              {/* //! Test: move to cart folder */}
-             <h2>total Price: {totalPrice}</h2>
-             <h2># of items in cart: {cartProducts.length}</h2>
-             <div className={classes.wrapper}>
-            {cartProducts && cartProducts.map((prod) => 
       
-                 <Product aType={1} product={prod} />
-            )}
-             </div>
              
         </div>
     )
