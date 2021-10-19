@@ -9,7 +9,7 @@ import { getCartProducts } from '../../state/slices/cartSlice';
 
 //todo call as a component for cleaner css usage
 const Shipping: React.FC<RouteComponentProps<any>> = (props) => {
-    // let histTest = useHistory();
+    // let history = useHistory();
     const classes = useStyles();
     const dispatch = useAppDispatch()
     const shippingInfo = useAppSelector(getShippingInfo);
@@ -22,25 +22,29 @@ const Shipping: React.FC<RouteComponentProps<any>> = (props) => {
 
     // useEffect(() => {
     //     dispatch(setAddressInfo(address, city, state));
-    // }, [dispatch, address, city, state, props.history.push])
+    // }, [dispatch, address, city, state, props])
+
+
 
 
     console.log(cartProductsStuff)
 
+    // const setShippingInfo = (e: React.MouseEvent<HTMLButtonElement>) => {
+    // const setShippingInfo = (e: React.FormEvent<HTMLFormElement>) => {
     const setShippingInfo = () => {
         // e.preventDefault();
-        dispatch(setAddressInfo(address, city, state));
+         dispatch(setAddressInfo(address, city, state))
    
 
-        // props.history.push("placeOrder");
+          props.history.push("placeOrder");
 
     }
 
-    const funbucket = () => {
-        dispatch(setAddressInfo(address, city, state));
-        // props.history.push("placeOrder");
-    }
-      console.log(shippingInfo && shippingInfo)
+    // const funbucket = () => {
+    //     dispatch(setAddressInfo(address, city, state));
+    //     props.history.push("placeOrder");
+    // }
+    //   console.log(shippingInfo && shippingInfo)
     
     return (
         <div className={classes.wrapper}>
@@ -52,7 +56,7 @@ const Shipping: React.FC<RouteComponentProps<any>> = (props) => {
             <input type="text" placeholder="State..." value={state} onChange={(e) => setState(e.target.value)}/>
             <button type={"submit"}>Next step</button>
             </form>
-        <button onClick={funbucket}>BUTT</button>
+        {/* <button onClick={funbucket}>BUTT</button> */}
         </div>
     )
 }
