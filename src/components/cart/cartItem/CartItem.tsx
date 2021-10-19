@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardMedia } from '@material-ui/core'
 import useStyles from '../CartStyles';
 
 import { useAppDispatch } from '../../../hooks/dispApp';
-import { addToCart, CartTest, removeFromCart, setCart, setChange,  } from '../../../state/reducers/cartSlice';
+import { addToCart, CartTest, removeFromCart, setCart, setChange,  } from '../../../state/slices/cartSlice';
 
  type Props = {
     cartInfo: CartTest

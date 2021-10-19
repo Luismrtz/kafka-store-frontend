@@ -8,9 +8,9 @@ import { Card, CardContent, CardHeader, CardMedia } from '@material-ui/core'
 
 import { ProductType } from '../../../state/type';
 import { useAppDispatch } from '../../../hooks/dispApp';
-import { productsDelete } from '../../../state/reducers/productSlice';
+import { productsDelete } from '../../../state/slices/productSlice';
 // import { productsFetch } from '../../../state/reducers/productSlice';
-import { addToCart, CartTest, removeFromCart, setCart, setChange } from '../../../state/reducers/cartSlice';
+import { addToCart, CartTest, removeFromCart, setCart, setChange } from '../../../state/slices/cartSlice';
 // import { useAppDispatch } from '../../../hooks/dispApp';
 
 

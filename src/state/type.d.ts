@@ -36,4 +36,7 @@ export type ActionType = ReturnType<typeof selectProductActionCreator>
 //     carts: CartType[]
 // }
 
+
+
+
 export type CartActionType = ReturnType<typeof setCart>

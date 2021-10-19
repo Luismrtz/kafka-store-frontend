@@ -8,10 +8,10 @@ import Product from './product/Product';
 import { useAppDispatch, useAppSelector } from '../../hooks/dispApp';
 
 import { RootState } from '../../state/store';
-import { productsFetch } from '../../state/reducers/productSlice';
+import { productsFetch } from '../../state/slices/productSlice';
 
 //! test, MOVE to Cart folder. 
-import { getCartProducts } from '../../state/reducers/cartSlice';
+import { getCartProducts } from '../../state/slices/cartSlice';
 // import { getTotalPrice } from '../../state/reducers/cartSlice';
 
 

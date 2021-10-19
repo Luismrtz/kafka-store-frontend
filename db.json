@@ -32,7 +32,197 @@
       "postId": 1
     }
   ],
-  "carts": [],
+  "carts": [
+    {
+      "shippingInfo": {
+        "address": "ffff",
+        "city": "123",
+        "state": "22"
+      },
+      "cartProducts": [
+        {
+          "id": 1,
+          "name": "Rock candy",
+          "img": "",
+          "price": 5,
+          "info": "This is a message",
+          "stock": 4,
+          "quantity": 4
+        }
+      ],
+      "id": 1
+    },
+    {
+      "shippingInfo": {},
+      "cartProducts": [
+        {
+          "id": 3,
+          "name": "Gummies",
+          "img": "",
+          "price": 3,
+          "info": "Oranges are oranges",
+          "stock": 3,
+          "quantity": 3
+        }
+      ],
+      "id": 2
+    },
+    {
+      "shippingInfo": {},
+      "cartProducts": [],
+      "id": 3
+    },
+    {
+      "shippingInfo": {
+        "address": "ppp",
+        "city": "pppooo",
+        "state": "uu78"
+      },
+      "cartProducts": [
+        {
+          "id": 1,
+          "name": "Rock candy",
+          "img": "",
+          "price": 5,
+          "info": "This is a message",
+          "stock": 4,
+          "quantity": 2
+        }
+      ],
+      "id": 4
+    },
+    {
+      "shippingInfo": {
+        "address": "2222",
+        "city": "3333",
+        "state": "444"
+      },
+      "cartProducts": [
+        {
+          "id": 1,
+          "name": "Rock candy",
+          "img": "",
+          "price": 5,
+          "info": "This is a message",
+          "stock": 4,
+          "quantity": 2
+        },
+        {
+          "id": 4,
+          "name": "Jaw breaker",
+          "img": "",
+          "price": 7,
+          "info": "Bananos",
+          "stock": 7,
+          "quantity": 5
+        },
+        {
+          "id": 3,
+          "name": "Gummies",
+          "img": "",
+          "price": 3,
+          "info": "Oranges are oranges",
+          "stock": 3,
+          "quantity": 2
+        }
+      ],
+      "id": 5
+    },
+    {
+      "shippingInfo": {
+        "address": "2222",
+        "city": "3333",
+        "state": "444"
+      },
+      "cartProducts": [
+        {
+          "id": 1,
+          "name": "Rock candy",
+          "img": "",
+          "price": 5,
+          "info": "This is a message",
+          "stock": 4,
+          "quantity": 2
+        },
+        {
+          "id": 4,
+          "name": "Jaw breaker",
+          "img": "",
+          "price": 7,
+          "info": "Bananos",
+          "stock": 7,
+          "quantity": 5
+        },
+        {
+          "id": 3,
+          "name": "Gummies",
+          "img": "",
+          "price": 3,
+          "info": "Oranges are oranges",
+          "stock": 3,
+          "quantity": 2
+        }
+      ],
+      "id": 6
+    },
+    {
+      "shippingInfo": {
+        "address": "fun",
+        "city": "fun",
+        "state": "fun"
+      },
+      "cartProducts": [
+        {
+          "id": 3,
+          "name": "Gummies",
+          "img": "",
+          "price": 3,
+          "info": "Oranges are oranges",
+          "stock": 3,
+          "quantity": 1
+        }
+      ],
+      "id": 7
+    },
+    {
+      "shippingInfo": {
+        "address": "sadfawer",
+        "city": "ccc",
+        "state": "1"
+      },
+      "cartProducts": [
+        {
+          "id": 3,
+          "name": "Gummies",
+          "img": "",
+          "price": 3,
+          "info": "Oranges are oranges",
+          "stock": 3,
+          "quantity": 1
+        }
+      ],
+      "id": 8
+    },
+    {
+      "shippingInfo": {
+        "address": "fffff",
+        "city": "3333",
+        "state": "x"
+      },
+      "cartProducts": [
+        {
+          "id": 3,
+          "name": "Gummies",
+          "img": "",
+          "price": 3,
+          "info": "Oranges are oranges",
+          "stock": 3,
+          "quantity": 1
+        }
+      ],
+      "id": 9
+    }
+  ],
   "profile": {
     "name": "typicode"
   }

@@ -21,6 +21,9 @@ function App() {
             {/* //todo for specific redirections? wip */}
             {/* <Redirect exact from="/details" to="/" /> */}
             {/* <Redirect exact from="/info" to="/" /> */}
+            {/* //todo order id page specific? */}
+            <Redirect exact from="/order" to="/" />
+
             {routes.map((route, index) => {
               return (
                 <Route
