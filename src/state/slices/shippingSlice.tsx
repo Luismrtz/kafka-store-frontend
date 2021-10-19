@@ -30,6 +30,8 @@ export const selectAddressSlice = createSlice({
             localStorage.setItem("shippingTestAddress", JSON.stringify(action.payload))
             console.log(action.payload)
             console.log(state)
+
+            state.shipInfo = action.payload
         }
     }
 })
