@@ -15,8 +15,8 @@ type initialStateType = {
 
 const initialState: initialStateType = {
    
-    shipInfo: localStorage.getItem("shippingTestAddress")
-    ? JSON.parse(localStorage.getItem("shippingTestAddress") || '')
+    shipInfo: sessionStorage.getItem("shippingTestAddress")
+    ? JSON.parse(sessionStorage.getItem("shippingTestAddress") || '')
     : '',
    
 }
@@ -27,10 +27,7 @@ export const selectAddressSlice = createSlice({
     initialState,
     reducers: {
         addShippingInfo(state, action: PayloadAction<shippingType>) {
-            localStorage.setItem("shippingTestAddress", JSON.stringify(action.payload))
-            console.log(action.payload)
-            console.log(state)
-
+            sessionStorage.setItem("shippingTestAddress", JSON.stringify(action.payload))
             state.shipInfo = action.payload
         }
     }
@@ -39,10 +36,16 @@ export const selectAddressSlice = createSlice({
 
 export const setAddressInfo = (address: string, city: string, state: string) => async (dispatch: Dispatch<ShippingActionType>) => {
     
-    const doop = { address, city, state}
-    console.log(doop)
-    dispatch(addShippingInfo(doop))
-  
+    try{
+        if(address !== '' && city !== '' && state !== '') {
+
+            const doop = { address, city, state}
+            console.log(doop)
+            dispatch(addShippingInfo(doop))
+        }
+    }catch (error){
+        console.log(error)
+  }
 
 }
 

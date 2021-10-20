@@ -31,9 +31,11 @@ console.log(cartsContainer?.shippingInfo);
 // }, [location.key])
 
     useEffect(() => {
-        // if(!shippingInfo) {
-        //     // props.history.push('/shipping');
-        // }
+        // if(!JSON.stringify(shippingInfo.address) || !JSON.stringify(shippingInfo.city) || !JSON.stringify(shippingInfo.state) || JSON.stringify(shippingInfo) === '{}') {
+        if(!shippingInfo) {
+
+            props.history.push('/shipping');
+        }
         // if(!cartsContainer?.cartProducts) {
         //     props.history.push('/');
         //     // props.history.push('/cart');

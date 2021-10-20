@@ -25,6 +25,7 @@ const Shipping: React.FC<RouteComponentProps<any>> = (props) => {
     // }, [dispatch, address, city, state, props])
 
 
+    console.log(address);
 
 
     console.log(cartProductsStuff)
@@ -33,11 +34,11 @@ const Shipping: React.FC<RouteComponentProps<any>> = (props) => {
     // const setShippingInfo = (e: React.FormEvent<HTMLFormElement>) => {
     const setShippingInfo = () => {
         // e.preventDefault();
-         dispatch(setAddressInfo(address, city, state))
-   
-
+        
+        if(address && city && state  ) {
+             dispatch(setAddressInfo(address, city, state))
           props.history.push("placeOrder");
-
+         }
     }
 
     // const funbucket = () => {
