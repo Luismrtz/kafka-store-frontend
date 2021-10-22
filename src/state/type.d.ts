@@ -14,7 +14,7 @@ export type ProductType = {
 export type productStateType = {
     products: ProductType[],
     loading: 'idle' | 'pending' | 'succeeded' | 'failed',
-    error: null | string
+    error: string | null | undefined
 }
 
 
