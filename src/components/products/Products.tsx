@@ -31,7 +31,7 @@ import { getCartProducts } from '../../state/slices/cartSlice';
 const Products = () => {
     const classes = useStyles();
     const dispatch = useAppDispatch();
-    const { products } = useAppSelector((state: RootState) => state.products);
+    const { products, error, loading } = useAppSelector((state: RootState) => state.products);
     // const [prods, setProds] = useState<productType[]>([]);
 
     //!test move to Cart folder
@@ -62,6 +62,13 @@ const Products = () => {
     }, [dispatch])
 
 
+    if(loading === 'failed') {
+        return (
+            <div>
+                <span>Error: {error}</span>
+            </div>
+        )
+    }
 
  
     return (

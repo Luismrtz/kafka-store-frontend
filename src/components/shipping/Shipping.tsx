@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../hooks/dispApp'
-import { getShippingInfo, setAddressInfo } from '../../state/slices/shippingSlice'
+import { getShippingError, getShippingInfo, setAddressInfo } from '../../state/slices/shippingSlice'
 import useStyles from './ShippingStyles';
 
 import { RouteComponentProps, withRouter, useHistory } from "react-router-dom";
@@ -13,6 +13,7 @@ const Shipping: React.FC<RouteComponentProps<any>> = (props) => {
     const classes = useStyles();
     const dispatch = useAppDispatch()
     const shippingInfo = useAppSelector(getShippingInfo);
+    const shippingError = useAppSelector(getShippingError);
     const cartProductsStuff = useAppSelector(getCartProducts)
     const [address, setAddress] = useState(shippingInfo.address)
     const [city, setCity] = useState(shippingInfo.city)
@@ -31,12 +32,12 @@ const Shipping: React.FC<RouteComponentProps<any>> = (props) => {
     console.log(cartProductsStuff)
 
     // const setShippingInfo = (e: React.MouseEvent<HTMLButtonElement>) => {
-    // const setShippingInfo = (e: React.FormEvent<HTMLFormElement>) => {
-    const setShippingInfo = () => {
-        // e.preventDefault();
+    const setShippingInfo = (e: React.FormEvent<HTMLFormElement>) => {
+    // const setShippingInfo = () => {
+        e.preventDefault();
         
-        if(address && city && state  ) {
-             dispatch(setAddressInfo(address, city, state))
+        dispatch(setAddressInfo(address, city, state))
+        if(!shippingError ) {
           props.history.push("placeOrder");
          }
     }
@@ -46,9 +47,14 @@ const Shipping: React.FC<RouteComponentProps<any>> = (props) => {
     //     props.history.push("placeOrder");
     // }
     //   console.log(shippingInfo && shippingInfo)
+
+
+    console.log(shippingError)
+    
     
     return (
         <div className={classes.wrapper}>
+          
             <form onSubmit={setShippingInfo}>
 
             <input type="text" placeholder="Address..." value={address} onChange={(e) => setAddress(e.target.value)}/>
@@ -58,6 +64,7 @@ const Shipping: React.FC<RouteComponentProps<any>> = (props) => {
             <button type={"submit"}>Next step</button>
             </form>
         {/* <button onClick={funbucket}>BUTT</button> */}
+        {shippingError && <span>error: {shippingError}</span>}
         </div>
     )
 }
